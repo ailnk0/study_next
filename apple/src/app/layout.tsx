@@ -3,6 +3,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
+import Image from 'next/image'
+import { Container } from 'react-bootstrap'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,19 +18,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <div className="navbar bg-dark border-bottom border-body">
-          <div className="d-flex">
-            <Link className="mx-2 text-white text-decoration-none" href="/">
-              Apple Fresh
-            </Link>
-            <Link className="mx-2 text-secondary text-decoration-none" href="/list">
-              Products
-            </Link>
-            <Link className="mx-2 text-secondary text-decoration-none" href="/cart">
-              Cart
-            </Link>
-            <Link className="mx-2 text-secondary text-decoration-none" href="/about">
-              About
-            </Link>
+          <div className="d-flex align-items-center">
+            <Container>
+              <Link className="ms-2 text-white text-decoration-none" href="/">
+                <Image
+                  style={{ filter: 'invert(1)' }}
+                  src="/favicon.ico"
+                  width={32}
+                  height={32}
+                  alt={''}
+                />
+              </Link>
+              <Link className="mx-2 text-white text-decoration-none" href="/">
+                Apple Fresh
+              </Link>
+              <Link className="mx-2 text-secondary text-decoration-none" href="/list">
+                Products
+              </Link>
+              <Link className="mx-2 text-secondary text-decoration-none" href="/cart">
+                Cart
+              </Link>
+              <Link className="mx-2 text-secondary text-decoration-none" href="/about">
+                About
+              </Link>
+            </Container>
           </div>
         </div>
         {children}
