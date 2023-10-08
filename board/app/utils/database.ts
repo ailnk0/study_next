@@ -55,4 +55,16 @@ async function getPostById(id: string) {
   }
 }
 
-export { mongoClient, checkMongoDB, getAllPost, getPostById }
+async function insertPost(post: any) {
+  try {
+    const col = await getForumPost()
+    const result = await col.insertOne(post)
+    console.log(`Inserted post with id ${result.insertedId}`)
+  } catch (e) {
+    console.log(e)
+  } finally {
+    await mongoClient.close()
+  }
+}
+
+export { mongoClient, checkMongoDB, getAllPost, getPostById, insertPost }
