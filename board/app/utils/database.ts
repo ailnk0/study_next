@@ -1,4 +1,4 @@
-import { MongoClient, ServerApiVersion } from 'mongodb'
+import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb'
 
 const uri = process.env.MONGODB_URI || ''
 
@@ -28,16 +28,31 @@ async function checkMongoDB() {
   }
 }
 
+async function getForumPost() {
+  await mongoClient.connect()
+  return mongoClient.db('forum').collection('post')
+}
+
 async function getAllPost() {
   try {
-    await mongoClient.connect()
-    return await mongoClient.db('forum').collection('post').find().toArray()
+    const col = await getForumPost()
+    return await col.find().toArray()
   } catch (e) {
     console.log(e)
   } finally {
-    // Ensures that the client will close when you finish/error
     await mongoClient.close()
   }
 }
 
-export { mongoClient, checkMongoDB, getAllPost }
+async function getPostById(id: string) {
+  try {
+    const col = await getForumPost()
+    return await col.findOne({ _id: new ObjectId(id) })
+  } catch (e) {
+    console.log(e)
+  } finally {
+    await mongoClient.close()
+  }
+}
+
+export { mongoClient, checkMongoDB, getAllPost, getPostById }
