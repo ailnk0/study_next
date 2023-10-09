@@ -6,23 +6,18 @@ import { Button } from 'react-bootstrap'
 
 export default function List({ posts }: { posts: WithId<Document>[] | undefined }) {
   function deletePost(_id: string) {
-    fetch(`/api/post/delete`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ _id })
+    fetch(`/api/post/delete?_id=${_id}`, {
+      method: 'GET'
     })
       .then((response) => {
-        console.log(response)
         if (response.ok) {
           window.location.reload()
         } else {
-          throw new Error('Failed to delete post')
+          console.log(response)
         }
       })
-      .catch((error) => {
-        console.error(error)
+      .catch((e) => {
+        console.log(e)
       })
   }
 
