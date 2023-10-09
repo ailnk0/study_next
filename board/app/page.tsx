@@ -2,6 +2,8 @@ import { Button, Container } from 'react-bootstrap'
 import { getAllPost } from './utils/database'
 import List from './list'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   try {
     const posts = await getAllPost()
