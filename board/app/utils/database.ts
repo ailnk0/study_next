@@ -67,4 +67,16 @@ async function insertPost(post: any) {
   }
 }
 
-export { mongoClient, checkMongoDB, getAllPost, getPostById, insertPost }
+async function updatePostById(id: string, newPostData: any) {
+  try {
+    const col = await getForumPost()
+    const result = await col.updateOne({ _id: new ObjectId(id) }, { $set: newPostData })
+    console.log(`Updated post with id ${id}`)
+  } catch (e) {
+    console.log(e)
+  } finally {
+    await mongoClient.close()
+  }
+}
+
+export { mongoClient, checkMongoDB, getAllPost, getPostById, insertPost, updatePostById }
