@@ -15,7 +15,7 @@ export default async function Home() {
           </Button>
         </div>
         <div>
-          <List posts={posts} />
+          <List posts={posts ? JSON.parse(JSON.stringify(posts)) : undefined} />
         </div>
         <div className="d-flex justify-content-end">
           <div>There are {posts?.length ?? 0} posts.</div>
