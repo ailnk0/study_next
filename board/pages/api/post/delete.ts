@@ -1,4 +1,4 @@
-import { deletePostById } from '@/app/utils/database'
+import { deletePostById } from '@/utils/database'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

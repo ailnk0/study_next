@@ -1,6 +1,7 @@
-import { Button, Container } from 'react-bootstrap'
-import { getAllPost } from './utils/database'
-import List from './list'
+import { Container } from 'react-bootstrap'
+import { getAllPost } from '../utils/database'
+import List from '../components/list'
+import ActionBar from '../components/actionBar'
 
 export const dynamic = 'force-dynamic'
 
@@ -10,18 +11,8 @@ export default async function Home() {
 
     return (
       <Container>
-        <div className="d-flex justify-content-between align-items-center">
-          <h1>Posts</h1>
-          <Button variant="primary" href="/write">
-            Write Post
-          </Button>
-        </div>
-        <div>
-          <List posts={posts ? JSON.parse(JSON.stringify(posts)) : undefined} />
-        </div>
-        <div className="d-flex justify-content-end">
-          <div>There are {posts?.length ?? 0} posts.</div>
-        </div>
+        <ActionBar />
+        <List posts={posts ? JSON.parse(JSON.stringify(posts)) : undefined} />
       </Container>
     )
   } catch (e) {

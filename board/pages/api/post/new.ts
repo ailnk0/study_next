@@ -1,4 +1,4 @@
-import { insertPost } from '@/app/utils/database'
+import { insertPost } from '@/utils/database'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

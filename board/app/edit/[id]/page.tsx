@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap'
-import { getPostById } from '../../utils/database'
+import { getPostById } from '../../../utils/database'
 
 export default async function EditPost(props: any) {
   const post = await getPostById(props.params.id)

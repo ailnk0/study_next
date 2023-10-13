@@ -50,6 +50,9 @@ export default function List({ posts }: { posts: WithId<Document>[] | undefined 
           </div>
         </div>
       ))}
+      <div className="d-flex justify-content-end">
+        <div>There are {posts?.length ?? 0} posts.</div>
+      </div>
     </div>
   )
 }

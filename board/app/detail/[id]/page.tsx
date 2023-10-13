@@ -1,4 +1,4 @@
-import { getPostById } from '@/app/utils/database'
+import { getPostById } from '@/utils/database'
 import React from 'react'
 import { Container } from 'react-bootstrap'
 
