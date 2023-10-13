@@ -1,3 +1,5 @@
+import { mongoClient } from "@/utils/database"
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 
@@ -10,6 +12,7 @@ export const authOptions = {
     }),
   ],
   secret: process.env.SECRET ?? '',
+  adapter: MongoDBAdapter(Promise.resolve(mongoClient))
 }
 
 export default NextAuth(authOptions)
