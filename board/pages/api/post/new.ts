@@ -1,5 +1,7 @@
 import { insertPost } from '@/utils/database'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { authOptions } from '../auth/[...nextauth]'
+import { getServerSession } from 'next-auth'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -14,12 +16,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ message: 'Content cannot be empty' })
     }
 
+    const session = await getServerSession(req, res, authOptions)
+    const email = session?.user?.email ?? ''
+    if (email.trim() === '') {
+      return res.status(400).json({ message: 'cannot read user info' })
+    }
+
     let doc = {
       title: title,
       content: content,
       created: new Date(),
       updated: new Date(),
-      writer: 'Farmer'
+      writer: email
     }
     await insertPost(doc)
 

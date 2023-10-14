@@ -33,6 +33,11 @@ async function getForumPost() {
   return mongoClient.db('forum').collection('post')
 }
 
+async function getForumUser() {
+  await mongoClient.connect()
+  return mongoClient.db('forum').collection('user')
+}
+
 async function getAllPost() {
   try {
     const col = await getForumPost()
@@ -91,6 +96,19 @@ async function deletePostById(id: string) {
   }
 }
 
+async function insertUser(user: any) {
+  try {
+    const col = await getForumUser()
+    const result = await col.insertOne(user)
+    console.log(`Inserted user with id ${result.insertedId}`)
+    return result
+  } catch (e) {
+    console.log(e)
+  } finally {
+    await mongoClient.close()
+  }
+}
+
 export {
   mongoClient,
   checkMongoDB,
@@ -98,5 +116,6 @@ export {
   getPostById,
   insertPost,
   updatePostById,
-  deletePostById
+  deletePostById,
+  insertUser
 }
