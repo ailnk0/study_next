@@ -8,7 +8,7 @@ export default function ActionBar() {
   return (
     <SessionProvider>
       <div className="d-flex justify-content-between align-items-center">
-        <h1>Posts</h1>
+        <h1>Board</h1>
         <div className="d-flex">
           <Button className="ms-2" variant="primary" href="/write">
             Write Post
