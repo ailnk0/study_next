@@ -9,8 +9,6 @@ export default function Comments(props: any) {
   const [comments, setComments] = useState([])
 
   const submitComment = () => {
-    console.log(comment)
-
     fetch(`/api/comment/create`, {
       method: 'POST',
       body: JSON.stringify({

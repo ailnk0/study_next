@@ -1,4 +1,5 @@
 import { mongoClient } from '@/utils/database'
+import { ObjectId } from 'mongodb'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -15,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const comments = await mongoClient
       .db('forum')
       .collection('comment')
-      .find({ parent: parent })
+      .find({ parent: new ObjectId(parent) })
       .toArray()
 
     res.status(200).json(JSON.stringify(comments))

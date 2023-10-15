@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap'
 
 export default function LoginBtn() {
   const session = useSession()
-  console.log('useSession', session)
   return (
     <div>
       {session?.data ? (
